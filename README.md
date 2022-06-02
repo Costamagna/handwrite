@@ -2,10 +2,10 @@
 
 ## Funzionalità presenti
 
- - [ ]  Scrivere con penna semplice ( nel codice si chiama _pencil_)
- - [ ] Scelta dei colori
- - [ ] Possibilità di cancellare intere linee -> Si verifica il rettangolo che contiene la linea 
- - [ ] Cancellare tutte le linee disegnate
+ - [x]  Scrivere con penna semplice ( nel codice si chiama _pencil_)
+ - [x] Scelta dei colori
+ - [x] Possibilità di cancellare intere linee -> Si verifica il rettangolo che contiene la linea 
+ - [x] Cancellare tutte le linee disegnate
 
 ## Modifiche da fare
  - [ ] Migliorare il sistema di cancellazione -> la logica della hitbox dev'essere più precisa
