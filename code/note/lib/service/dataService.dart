@@ -21,6 +21,7 @@ class DataService {
 
   void closeTemporaryLine() {
     lstLine.add(_temporary);
+    _temporary = Line(PenInfo.base());
   }
 
   void deleteLine(Offset point) {

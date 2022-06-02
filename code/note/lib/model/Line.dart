@@ -62,7 +62,6 @@ class Line {
         return true;
       }
     }
-
     return false;
   }
 
