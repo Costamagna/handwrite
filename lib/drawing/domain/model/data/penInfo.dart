@@ -32,7 +32,17 @@ class PenInfo {
     return PenInfo(_color, _width);
   }
 
-  String toJson() {
-    return "{\"color\": \"${_color.toString().split('(0x')[1].split(')')[0]}\", \"width\":${_width}}";
+  Map<String, dynamic> toJson() {
+    return {
+      "color": _color.toString().split('(0x')[1].split(')')[0],
+      "width": _width.toString(),
+    };
+  }
+
+  static PenInfo fromJson(Map<String, dynamic> data) {
+    return PenInfo(
+      Color(int.parse("0x${data["color"] as String}")),
+      double.parse(data["width"] as String),
+    );
   }
 }

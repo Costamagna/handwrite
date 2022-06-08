@@ -1,38 +1,26 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:note/model/data/Document.dart';
-import 'package:note/model/data/Line.dart';
-import 'package:note/model/data/Paper.dart';
-import 'package:note/model/penInfo.dart';
-import 'package:note/service/FSservice.dart';
+import 'package:note/IO_operation/domain/repository/IO_repository.dart';
+import 'package:note/drawing/darwingExport.dart';
 
 class DataService {
-  String testFile = "C:\\Users\\mcost\\OneDrive\\Desktop\\test.json";
+  final IO ioRepo;
 
   Line _temporary = Line(PenInfo.base());
   final List<Paper> lstPage = [Paper()];
 
-  late final Document document;
+  late Document document;
 
-  DataService(this.document);
-  DataService.newDocument() {
-    document = Document.newNow([]);
+  DataService(this.document, this.ioRepo);
+  DataService.newDocument(this.ioRepo) {
+    document = Document.newNow([Paper()]);
   }
 
   void saveOnFile() {
-    FSservice.saveFile(testFile,
-        '{"pages":[${lstPage.map((e) => e.toJson()).reduce((value, element) => "$value , $element")}]}');
+    ioRepo.write(document.toJson());
   }
 
   void fromFile() async {
-    String str = (await FSservice.readFile(testFile)).replaceAll("\\", "");
-
-    dynamic data = jsonDecode(str);
-
-    print(Document.newNow([Paper()]).toJson());
-
-    print("testing");
+    document = Document.fromJson(await ioRepo.read());
   }
 
   void createTemporaryLine(PenInfo penInfo, Offset point) {
@@ -46,7 +34,6 @@ class DataService {
 
   void closeTemporaryLine() {
     document.addLine(_temporary);
-    //lstPage.elementAt(_currentPage).addLine(_temporary);
     _temporary = Line(PenInfo.base());
   }
 
@@ -63,8 +50,10 @@ class DataService {
     document.clear();
   }
 
-  String toJson() {
-    return '{ "pages": [${lstPage.map((Paper paper) => paper.toJson()).reduce((value, element) => "$value , $element")}]}';
+  Map<String, dynamic> toJson() {
+    return {
+      "pages": lstPage.map((Paper paper) => paper.toJson()).toList(),
+    };
   }
 
   List<Widget> toWidgetList() => document.toWidgetList();

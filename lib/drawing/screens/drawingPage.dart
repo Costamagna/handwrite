@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:note/model/Pens/Pencil.dart';
-import 'package:note/model/Pens/Rubber.dart';
-
-import '../model/Pens/Pen.dart';
-import '../model/penInfo.dart';
-import '../service/dataService.dart';
-import '../widget/ColorsPalette.dart';
-import '../widget/CustomCanvas.dart';
+import 'package:note/IO_operation/domain/services/IO_service.dart';
+import 'package:note/drawing/darwingExport.dart';
 
 class DrawingPage extends StatefulWidget {
-  final DataService dataService = DataService.newDocument();
+  final DataService dataService = DataService.newDocument(IOFileSystem());
   PenInfo penInfo = PenInfo.base();
 
   Pen pen = Pencil();

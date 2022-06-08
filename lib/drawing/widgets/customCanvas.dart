@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note/widget/Drawer/TemporaryDrawer.dart';
-
-import '../model/data/Line.dart';
+import 'package:note/drawing/darwingExport.dart';
 
 class CustomCanvas extends StatefulWidget {
   final Line line;

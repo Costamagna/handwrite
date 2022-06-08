@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 
-class FSservice {
+class Utils {
+  static String mapToString(Map map) => jsonEncode(map);
+
   static void saveFile(String filename, String data) async {
     await File(filename).writeAsString(data);
   }

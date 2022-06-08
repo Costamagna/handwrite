@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../model/Palette.dart';
+import 'package:note/drawing/darwingExport.dart';
 
 class ColorsPalette extends StatefulWidget {
   Color selectedColor = Colors.black;

@@ -1,5 +1,4 @@
-import 'package:note/model/data/Document.dart';
-import 'package:note/model/data/Paper.dart';
+import 'package:note/drawing/darwingExport.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -17,15 +16,16 @@ void main() {
   group('toJson', () {
     test('No paper', () {
       Document doc = Document(DateTime(2022, 1, 1), []);
-      expect(doc.toJson(),
-          '{"created": "${doc.getCreationDate()}", "papers": []}');
+      expect(doc.toJson(), {"created": doc.getCreationDate(), "papers": []});
     });
 
     test('One paper', () {
       Paper ppr = Paper();
       Document doc = Document(DateTime(2022, 1, 1), [ppr]);
-      expect(doc.toJson(),
-          '{"created": "${doc.getCreationDate()}", "papers": [${ppr.toJson()}]}');
+      expect(doc.toJson(), {
+        "created": doc.getCreationDate(),
+        "papers": [ppr.toJson()],
+      });
     });
   });
 }

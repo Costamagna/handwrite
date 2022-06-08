@@ -1,8 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
-import '../../model/data/Line.dart';
+import 'package:note/drawing/darwingExport.dart';
 
 class TemporaryDrawer extends CustomPainter {
   final Line line;

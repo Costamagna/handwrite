@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:note/model/penInfo.dart';
+import 'package:note/drawing/domain/model/data/penInfo.dart';
 // ---
 
 class Line {
@@ -73,15 +73,23 @@ class Line {
         .toList();
   }
 
-  String toJson() {
-    return '{ "pen": ${_penInfo.toJson()}, "points": [${_points.map((e) => '{"x":"${e.dx}", "y":"${e.dy}"}').fold(
-          "",
-          (String value, element) =>
-              (value.isEmpty) ? element : "$value , $element",
-        )}]}';
+  Map<String, dynamic> toJson() {
+    return {
+      "pen": _penInfo.toJson(),
+      "points": _points.map((e) => {"x": "${e.dx}", "y": "${e.dy}"}).toList()
+    };
   }
 
   static Line fromJson(Map<String, dynamic> data) {
-    return Line(PenInfo.base());
+    Line ln = Line(PenInfo.fromJson(data["pen"]));
+    if ((data["points"] as List).isNotEmpty) {
+      (data["points"] as List)
+          .map((e) => Offset(
+                double.parse(e["x"] as String), double.parse(e["y"] as String))
+          )
+          .toList()
+          .forEach((point) => ln.addPoint(point));
+    }
+    return ln;
   }
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../model/data/Line.dart';
-import 'Drawer/WidgetDrawer.dart';
+import 'package:note/drawing/darwingExport.dart';
 
 class WidgetLine extends StatefulWidget {
   final Line line;

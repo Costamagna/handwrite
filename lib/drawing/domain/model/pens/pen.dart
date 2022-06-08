@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:note/model/penInfo.dart';
-import 'package:note/service/dataService.dart';
+import 'package:note/drawing/domain/model/data/penInfo.dart';
+import 'package:note/drawing/domain/services/dataService.dart';
 
 abstract class Pen {
   void onPanStart(DataService data, Offset point, PenInfo penInfo);

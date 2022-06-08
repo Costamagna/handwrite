@@ -1,15 +1,13 @@
 import 'dart:ui';
 
-import 'package:note/model/data/Line.dart';
-import 'package:note/model/data/Paper.dart';
-import 'package:note/model/penInfo.dart';
+import 'package:note/drawing/darwingExport.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('toJson', () {
     test('No line', () {
       Paper ppr = Paper();
-      expect(ppr.toJson(), '');
+      expect(ppr.toJson(), {});
     });
     test('One line', () {
       Paper ppr = Paper();
@@ -17,7 +15,9 @@ void main() {
       ln.addPoint(const Offset(100, 100));
       ppr.addLine(ln);
 
-      expect(ppr.toJson(), '{ "lines": [${ln.toJson()}]}');
+      expect(ppr.toJson(), {
+        "lines": [ln.toJson()]
+      });
     });
     test('Two line', () {
       Paper ppr = Paper();
@@ -29,7 +29,12 @@ void main() {
       ppr.addLine(ln1);
       ppr.addLine(ln2);
 
-      expect(ppr.toJson(), '{ "lines": [${ln1.toJson()} , ${ln2.toJson()}]}');
+      expect(ppr.toJson(), {
+        "lines": [
+          ln1.toJson(),
+          ln2.toJson(),
+        ]
+      });
     });
   });
 }

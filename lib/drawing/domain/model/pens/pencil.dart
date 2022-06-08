@@ -1,8 +1,6 @@
 import 'dart:ui';
 
-import 'package:note/model/Pens/Pen.dart';
-import 'package:note/model/penInfo.dart';
-import 'package:note/service/dataService.dart';
+import 'package:note/drawing/darwingExport.dart';
 
 class Pencil implements Pen {
   @override
